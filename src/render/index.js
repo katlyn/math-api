@@ -1,5 +1,5 @@
 const MathJax = require('mathjax-node');
-const svg2png = require('svg2png');
+const { convert: svg2png } = require('convert-svg-to-png');
 
 /** @typedef {{ input: 'latex', inline?: boolean } | { input: 'mathml' }} InputDefinition */
 /** @typedef {{ output: 'mathml' | 'svg' } | { output: 'png', width?: number, height?: number }} OutputDefinition */
@@ -108,19 +108,31 @@ exports.render = async (event) => {
 
         case 'png':
         {
-            const res = await typeset({ math, format, svg: true });
+            const res = await typeset({ math, format, svgNode: true });
+            res.svgNode.style.backgroundColor = event.background;
+            res.svgNode.style.color = event.foreground;
 
             const { width, height } = event;
-            const data = await svg2png(res.svg, { width, height });
+            const data = await svg2png(res.svgNode.outerHTML, {
+                width,
+                height,
+                puppeteer: {
+                    args: [
+                        '--no-sandbox',
+                    ]
+                }
+            });
 
             return { contentType: RESPONSE_TYPES.png, isBase64Encoded: true, data: data.toString('base64') };
         }
 
         case 'svg':
         {
-            const res = await typeset({ math, format, svg: true });
+            const res = await typeset({ math, format, svgNode: true });
+            res.svgNode.style.backgroundColor = event.background;
+            res.svgNode.style.color = event.foreground;
 
-            return { contentType: RESPONSE_TYPES.svg, data: res.svg };
+            return { contentType: RESPONSE_TYPES.svg, data: res.svgNode.outerHTML };
         }
 
         default:

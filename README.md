@@ -53,11 +53,13 @@ docker run --name math-api -d -p 3000:3000 chialab/math-api
    **Valid values**: `mathml`, `png`, `svg`
 - `width`, `height` (_optional_): when `output` is `png`, specify the dimensions of the image to return.  
    **Valid values**: _positive integers_
+- `foreground`, `background`: when `output` is `svg` or `png` specify the colours to render with.
+   **Valid values**: _any valid CSS color_
 
 **Examples**:
 
 ```http
-GET /render?input=latex&output=svg&source=x^2 HTTP/1.1
+GET /render?input=latex&output=svg&source=x^2&foreground=red HTTP/1.1
 Accept: image/svg+xml
 ```
 
@@ -82,6 +84,8 @@ Accept: image/png
    **Valid values**: `mathml`, `png`, `svg`
 - `width`, `height` (_optional_): when `output` is `png`, specify the dimensions of the image to return.  
    **Valid values**: _positive integers_
+- `foreground`, `background`: when `output` is `svg` or `png` specify the colours to render with.
+   **Valid values**: _any valid CSS color_
 
 **Examples**:
 
@@ -93,7 +97,9 @@ Content-Type: application/json
 {
     "input": "latex",
     "output": "svg",
-    "source": "e^{i \\pi} + 1 = 0"
+    "source": "e^{i \\pi} + 1 = 0",
+    "background: "white",
+    "foreground: "#444"
 }
 ```
 
@@ -107,7 +113,9 @@ Content-Type: application/json
     "inline": true,
     "output": "png",
     "source": "e^{i \\pi} + 1 = 0",
-    "width": 512
+    "width": 512,
+    "background: "white",
+    "foreground: "#444"
 }
 ```
 

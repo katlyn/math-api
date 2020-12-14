@@ -98,8 +98,8 @@ Content-Type: application/json
     "input": "latex",
     "output": "svg",
     "source": "e^{i \\pi} + 1 = 0",
-    "background: "white",
-    "foreground: "#444"
+    "background": "white",
+    "foreground": "#444"
 }
 ```
 
@@ -114,8 +114,8 @@ Content-Type: application/json
     "output": "png",
     "source": "e^{i \\pi} + 1 = 0",
     "width": 512,
-    "background: "white",
-    "foreground: "#444"
+    "background": "white",
+    "foreground": "#444"
 }
 ```
 

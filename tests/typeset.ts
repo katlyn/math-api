@@ -11,29 +11,29 @@ t.test('Typeset Jax', async t => {
   t.test('Typeset MathML Jax', async t => {
     const mml = new MathML()
     const svg = typesetJax(MATHML_STRING, mml)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('Typeset TeX Jax', async t => {
     const tex = new TeX()
     const svg = typesetJax(TEX_STRING, tex)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 })
 
 t.test('Typeset SVG', async t => {
   t.test('TeX with default options', async t => {
     const svg = typesetTex(TEX_STRING)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('Inline TeX', async t => {
     const svg = typesetTex(TEX_STRING, { inline: true })
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('TeX with custom colors', async t => {
@@ -42,8 +42,8 @@ t.test('Typeset SVG', async t => {
       foreground: 'blue'
     }
     const svg = typesetTex(TEX_STRING, opts)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
     t.ok(svg.includes(`background-color: ${opts.background}`), 'Background color is correct')
     t.ok(svg.includes(`color: ${opts.foreground}`), 'Background color is correct')
   })
@@ -52,14 +52,14 @@ t.test('Typeset SVG', async t => {
 t.test('Typeset MathML', async t => {
   t.test('MathML with default options', async t => {
     const svg = typesetMathML(MATHML_STRING)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('Inline MathML', async t => {
     const svg = typesetTex(MATHML_STRING, { inline: true })
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('MathML with custom colors', async t => {
@@ -68,8 +68,8 @@ t.test('Typeset MathML', async t => {
       foreground: 'blue'
     }
     const svg = typesetTex(MATHML_STRING, opts)
-    t.ok(svg.includes('<svg'), 'Includs opening SVG tag')
-    t.ok(svg.includes('</svg>'), 'Inlcudes closing SVG tag')
+    t.ok(svg.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(svg.endsWith('</svg>'), 'End with closing SVG tag')
     t.ok(svg.includes(`background-color: ${opts.background}`), 'Background color is correct')
     t.ok(svg.includes(`color: ${opts.foreground}`), 'Background color is correct')
   })

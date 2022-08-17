@@ -21,7 +21,8 @@ t.test('GET /render', async t => {
     const response = await server.inject().get('/render?input=latex&output=svg&source=x').end()
     t.equal(response.statusCode, 200, 'Response has OK status code')
     t.equal(response.headers['content-type'], 'image/svg+xml', 'Response has correct MIME type')
-    t.ok(response.body.includes('</svg>'), 'Response contains SVG closing tag')
+    t.ok(response.body.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(response.body.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('Output PNG', async t => {
@@ -48,7 +49,8 @@ t.test('POST /render', async t => {
 
     t.equal(response.statusCode, 200, 'Response has OK status code')
     t.equal(response.headers['content-type'], 'image/svg+xml', 'Response has correct MIME type')
-    t.ok(response.body.includes('</svg>'), 'Response contains SVG closing tag')
+    t.ok(response.body.startsWith('<svg'), 'Starts with opening SVG tag')
+    t.ok(response.body.endsWith('</svg>'), 'End with closing SVG tag')
   })
 
   t.test('Output PNG', async t => {

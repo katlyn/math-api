@@ -1,0 +1,22 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: development.Dockerfile
+      context: .
+    environment:
+      NODE_ENV: development
+      MYSQL_CONNECTION_STRING: mysql://root:changeme@db/scholars
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/math-api
+  tests:
+    build:
+      dockerfile: development.Dockerfile
+      context: .
+    volumes:
+      - ./:/math-api
+    stdin_open: true
+    tty: true
+    command: [ "npm", "test", "--", "-w" ]

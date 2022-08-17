@@ -4,13 +4,7 @@ import { MathML } from 'mathjax-full/js/input/mathml.js'
 import { SVG } from 'mathjax-full/js/output/svg.js'
 import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
-import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml.js'
-
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
-import { LiteNode } from 'mathjax-full/js/adaptors/lite/Element'
-import { Handler } from 'mathjax-full/js/core/Handler'
-import { LiteText } from 'mathjax-full/js/adaptors/lite/Text'
-import { LiteDocument } from 'mathjax-full/js/adaptors/lite/Document'
 import { InputJax } from 'mathjax-full/js/core/InputJax'
 
 const DEFAULT_OPTIONS = {
@@ -28,8 +22,7 @@ export const typesetJax = (input: string, jax: InputJax<unknown, unknown, unknow
   const options: typeof DEFAULT_OPTIONS = { ...DEFAULT_OPTIONS, ...opts }
 
   const adaptor = liteAdaptor()
-  const handler = RegisterHTMLHandler(adaptor)
-  AssistiveMmlHandler(handler as Handler<LiteNode, LiteText, LiteDocument>)
+  RegisterHTMLHandler(adaptor)
 
   const svg = new SVG({ fontCache: 'local' })
   const html = mathjax.document('', { InputJax: jax, OutputJax: svg })

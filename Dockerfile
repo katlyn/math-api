@@ -1,5 +1,6 @@
 FROM node:16
 EXPOSE 80
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 WORKDIR /math-api
 
 # Install Chromium

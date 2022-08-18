@@ -32,6 +32,7 @@ export const render = async (opts: RenderOptsType): Promise<string | Buffer> => 
         width: opts.width,
         height: opts.height,
         puppeteer: {
+          executablePath: '/usr/bin/chromium',
           args: [
             '--no-sandbox'
           ]

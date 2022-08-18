@@ -5,7 +5,7 @@ on:
     branches:
       - rewrite
     tags:
-      - 'v*.*.*'
+      - 'v**'
 
 jobs:
   tag:

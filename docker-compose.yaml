@@ -6,7 +6,6 @@ services:
       context: .
     environment:
       NODE_ENV: development
-      MYSQL_CONNECTION_STRING: mysql://root:changeme@db/scholars
     ports:
       - 8080:80
     volumes:

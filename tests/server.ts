@@ -33,6 +33,13 @@ t.test('GET /render', async t => {
     t.equal(response.headers['content-type'], 'image/png', 'Response has correct MIME type')
     t.strictSame(data, PNG_SIGNATURE, 'Response has correct PNG signature')
   })
+
+  t.test('Request invalid TeX', async t => {
+    const response = await server.inject().get('/render?input=latex&output=png&source=%23&width=500').end()
+
+    t.equal(response.statusCode, 400, 'Response has error status code')
+    t.equal(response.headers['content-type'], 'application/json; charset=utf-8', 'Response has correct MIME type')
+  })
 })
 
 t.test('POST /render', async t => {

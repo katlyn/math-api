@@ -50,7 +50,6 @@ export const typesetTex = (input: string, opts: TypesetOptions = {}): string => 
   const tex = new TeX({
     packages,
     formatError: (jax: TeX<unknown, unknown, unknown>, err: TexError) => {
-      console.log(err)
       throw new BadRequest(`[${err.id}] ${err.message}`)
     }
   })

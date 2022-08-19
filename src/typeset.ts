@@ -1,3 +1,4 @@
+import { BadRequest } from 'http-errors'
 import { mathjax } from 'mathjax-full/js/mathjax.js'
 import { TeX } from 'mathjax-full/js/input/tex.js'
 import { MathML } from 'mathjax-full/js/input/mathml.js'
@@ -50,7 +51,7 @@ export const typesetTex = (input: string, opts: TypesetOptions = {}): string => 
     packages,
     formatError: (jax: TeX<unknown, unknown, unknown>, err: TexError) => {
       console.log(err)
-      throw new Error(`[${err.id}] ${err.message}`)
+      throw new BadRequest(`[${err.id}] ${err.message}`)
     }
   })
   return typesetJax(input, tex, opts)

@@ -1,10 +1,9 @@
-FROM node:16
+FROM node:16-alpine
 EXPOSE 80
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 WORKDIR /math-api
 
 # Install Chromium
-RUN apt-get update && apt-get install -y chromium && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache inkscape
 
 # Install packages
 COPY package*.json tsconfig.json ./

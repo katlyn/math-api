@@ -14,8 +14,9 @@
   "license": "MIT",
   "devDependencies": {
     "@types/http-errors": "^1.8.2",
-    "@types/node": "^16.11.38",
+    "@types/node": "^16.11.49",
     "@types/tap": "^15.0.7",
+    "@types/tmp": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "eslint": "^8.19.0",
     "eslint-config-standard-with-typescript": "^22.0.0",
@@ -31,9 +32,9 @@
   "dependencies": {
     "@fastify/type-provider-typebox": "^2.3.0",
     "@sinclair/typebox": "^0.24.28",
-    "convert-svg-to-png": "^0.6.4",
     "fastify": "^4.4.0",
     "http-errors": "^2.0.0",
-    "mathjax-full": "^3.2.2"
+    "mathjax-full": "^3.2.2",
+    "tmp-promise": "^3.0.3"
   }
 }

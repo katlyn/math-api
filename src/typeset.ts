@@ -6,6 +6,7 @@ import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
 import { InputJax } from 'mathjax-full/js/core/InputJax'
+import TexError from 'mathjax-full/js/input/tex/TexError'
 
 const DEFAULT_OPTIONS = {
   width: 1280,
@@ -45,7 +46,13 @@ export const typesetJax = (input: string, jax: InputJax<unknown, unknown, unknow
 
 export const typesetTex = (input: string, opts: TypesetOptions = {}): string => {
   const packages = AllPackages.sort()
-  const tex = new TeX({ packages })
+  const tex = new TeX({
+    packages,
+    formatError: (jax: TeX<unknown, unknown, unknown>, err: TexError) => {
+      console.log(err)
+      throw new Error(`[${err.id}] ${err.message}`)
+    }
+  })
   return typesetJax(input, tex, opts)
 }
 
